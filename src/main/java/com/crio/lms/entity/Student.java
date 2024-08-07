@@ -20,5 +20,11 @@ public class Student {
     private List<Subject> subjects;
     @ManyToMany
     private List<Exam> exams;
+    public Student(Long id, String name, List<Subject> subjects, List<Exam> exams) {
+        this.id = id;
+        this.name = name;
+        this.subjects = subjects;
+        this.exams = exams;
+    }
     
 }
