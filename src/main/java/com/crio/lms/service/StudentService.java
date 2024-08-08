@@ -21,9 +21,28 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
-    public Student saveStudent(Student student){
-       return studentRepository.save(student);
+    public Student saveStudent(Student student) {
+        return studentRepository.save(student);
     }
+
+    public Student updateStudent(Long id, Student studentDetails) {
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student != null) {
+            student.setName(studentDetails.getName());
+            student.setSubjects(studentDetails.getSubjects());
+            student.setExams(studentDetails.getExams());
+            return studentRepository.save(student);
+        }
+        return null;
+    }
+
+    public void deleteStudent(Long id) {
+        studentRepository.deleteById(id);
+    }
+
+    
+
+    
 
     
 

@@ -13,56 +13,51 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crio.lms.entity.Student;
-import com.crio.lms.service.StudentService;
+import com.crio.lms.entity.Exam;
+import com.crio.lms.service.ExamService;
 
 @RestController
-@RequestMapping("/students")
-public class StudentController {
+@RequestMapping("/exams")
+public class ExamController {
+    
     @Autowired
-    StudentService studentService;
+    private ExamService examService;
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public List<Exam> getAllExams() {
+        return examService.getAllExams();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
-        Student student = studentService.getStudentById(id);
-        if (student != null) {
-            return ResponseEntity.ok(student);
+    public ResponseEntity<Exam> getExamById(@PathVariable Long id) {
+        Exam exam = examService.getExamById(id);
+        if (exam != null) {
+            return ResponseEntity.ok(exam);
         }
         return ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);
-  
+    public Exam createExam(@RequestBody Exam exam) {
+        return examService.saveExam(exam);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
-        Student updatedStudent = studentService.updateStudent(id, studentDetails);
-        if (updatedStudent != null) {
-            return ResponseEntity.ok(updatedStudent);
+    public ResponseEntity<Exam> updateExam(@PathVariable Long id, @RequestBody Exam examDetails) {
+        Exam updatedExam = examService.updateExam(id, examDetails);
+        if (updatedExam != null) {
+            return ResponseEntity.ok(updatedExam);
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
+    public ResponseEntity<Void> deleteExam(@PathVariable Long id) {
+        examService.deleteExam(id);
         return ResponseEntity.noContent().build();
     }
 
-
-
     
 
-
-
-
-
+    
 }
